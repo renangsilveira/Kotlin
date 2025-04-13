@@ -1,0 +1,23 @@
+[
+  {
+    "createdAt": "2025-04-06T22:50:22.4570146",
+    "description": "Estudar Kotlin",
+    "id": 1,
+    "status": "done",
+    "updatedAt": "2025-04-06T23:02:21.7489113"
+  },
+  {
+    "createdAt": "2025-04-06T23:00:24.3368999",
+    "description": "Estudar Kotlin",
+    "id": 2,
+    "status": "in-progress",
+    "updatedAt": "2025-04-06T23:02:02.4073807"
+  },
+  {
+    "createdAt": "2025-04-06T23:17:52.9213211",
+    "description": "Estudar Kotlin",
+    "id": 3,
+    "status": "todo",
+    "updatedAt": "2025-04-06T23:17:52.9213211"
+  }
+]
