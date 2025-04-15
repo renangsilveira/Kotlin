@@ -8,20 +8,20 @@ class TaskController(private val service: TaskService) {
 
     fun handle(args: Array<String>) {
         if (args.isEmpty()) {
-            println("Comando inválido. Use: add | update | delete | mark-in-progress | mark-done | list")
+            println("Invalid Command. Use: add | update | delete | mark-in-progress | mark-done | list")
             return
         }
 
         when (args[0]) {
             "add" -> {
-                val description = args.getOrNull(1) ?: return println("Descrição obrigatória.")
+                val description = args.getOrNull(1) ?: return println("Must add description.")
                 val task = service.add(TaskDto(description))
                 println("Task added successfully (ID: ${task.id})")
             }
 
             "update" -> {
-                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("ID inválido.")
-                val description = args.getOrNull(2) ?: return println("Descrição obrigatória.")
+                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("Invalid ID.")
+                val description = args.getOrNull(2) ?: return println("Must add description.")
                 if (service.update(id, description))
                     println("Task updated successfully")
                 else
@@ -29,7 +29,7 @@ class TaskController(private val service: TaskService) {
             }
 
             "delete" -> {
-                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("ID inválido.")
+                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("Invalid ID.")
                 if (service.delete(id))
                     println("Task deleted successfully")
                 else
@@ -37,7 +37,7 @@ class TaskController(private val service: TaskService) {
             }
 
             "mark-in-progress" -> {
-                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("ID inválido.")
+                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("Invalid ID.")
                 if (service.changeStatus(id, "in-progress"))
                     println("Task marked as in-progress")
                 else
@@ -45,7 +45,7 @@ class TaskController(private val service: TaskService) {
             }
 
             "mark-done" -> {
-                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("ID inválido.")
+                val id = args.getOrNull(1)?.toIntOrNull() ?: return println("Invalid ID.")
                 if (service.changeStatus(id, "done"))
                     println("Task marked as done")
                 else
@@ -69,7 +69,7 @@ class TaskController(private val service: TaskService) {
                 }
             }
 
-            else -> println("Comando não reconhecido.")
+            else -> println("Command not recognized.")
         }
     }
 }

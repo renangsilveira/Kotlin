@@ -33,12 +33,12 @@ class TaskControllerTest {
 
     @Test
     fun `should add task`() {
-        val dto = TaskDto("Nova tarefa")
+        val dto = TaskDto("New task")
         val task = Task(1, dto.description, "pending", LocalDateTime.now().toString(), LocalDateTime.now().toString())
 
         whenever(service.add(dto)).thenReturn(task)
 
-        controller.handle(arrayOf("add", "Nova tarefa"))
+        controller.handle(arrayOf("add", "New task"))
 
         assertTrue(stdOut.toString().contains("Task added successfully (ID: 1)"))
     }
@@ -47,23 +47,23 @@ class TaskControllerTest {
     fun `should show error on add without description`() {
         controller.handle(arrayOf("add"))
 
-        assertTrue(stdOut.toString().contains("Descrição obrigatória."))
+        assertTrue(stdOut.toString().contains("Must add description."))
     }
 
     @Test
     fun `should update task successfully`() {
-        whenever(service.update(1, "Atualizada")).thenReturn(true)
+        whenever(service.update(1, "Updated")).thenReturn(true)
 
-        controller.handle(arrayOf("update", "1", "Atualizada"))
+        controller.handle(arrayOf("update", "1", "Updated"))
 
         assertTrue(stdOut.toString().contains("Task updated successfully"))
     }
 
     @Test
     fun `should show error if update fails`() {
-        whenever(service.update(1, "Atualizada")).thenReturn(false)
+        whenever(service.update(1, "Updated")).thenReturn(false)
 
-        controller.handle(arrayOf("update", "1", "Atualizada"))
+        controller.handle(arrayOf("update", "1", "Updated"))
 
         assertTrue(stdOut.toString().contains("Task with ID 1 not found"))
     }
@@ -107,7 +107,7 @@ class TaskControllerTest {
     @Test
     fun `should list tasks`() {
         val tasks = listOf(
-            Task(1, "Testar", "pending", LocalDateTime.now().toString(), LocalDateTime.now().toString())
+            Task(1, "Testing", "pending", LocalDateTime.now().toString(), LocalDateTime.now().toString())
         )
 
         whenever(service.list(null)).thenReturn(tasks)
@@ -116,7 +116,7 @@ class TaskControllerTest {
 
         val output = stdOut.toString()
         assertTrue(output.contains("ID: 1"))
-        assertTrue(output.contains("Description: Testar"))
+        assertTrue(output.contains("Description: Testing"))
         assertTrue(output.contains("Status: pending"))
     }
 
@@ -133,13 +133,13 @@ class TaskControllerTest {
     fun `should show help message for unknown command`() {
         controller.handle(arrayOf("foobar"))
 
-        assertTrue(stdOut.toString().contains("Comando não reconhecido"))
+        assertTrue(stdOut.toString().contains("Command not recognized"))
     }
 
     @Test
     fun `should show help message for empty args`() {
         controller.handle(emptyArray())
 
-        assertTrue(stdOut.toString().contains("Comando inválido"))
+        assertTrue(stdOut.toString().contains("Invalid Command"))
     }
 }
