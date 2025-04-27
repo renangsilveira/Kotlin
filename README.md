@@ -2,6 +2,5 @@
 
 This repository contains Kotlin projects.
 
-## Projects
-- [Task Tracker](./Task-Tracker): A simple CLI task management application built with Kotlin. https://roadmap.sh/projects/task-tracker
-- 
+### 🌐 Project Page
+👉 [Task Tracker - GitHub Repository](https://github.com/renangsilveira/Kotlin/tree/master/Task-Tracker) from  https://roadmap.sh/projects/task-tracker
